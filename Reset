@@ -1,0 +1,18 @@
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+while true do
+    if LocalPlayer:FindFirstChild("Data") then
+        local data = LocalPlayer.Data
+        local eventCurrency = data:FindFirstChild("EventCurrency") -- обычно мячики ивента
+        local ballLimit = 40 -- лимит сумки
+
+        if eventCurrency and eventCurrency.Value >= ballLimit then
+            -- Автоматический ресет персонажа
+            LocalPlayer.Character:BreakJoints()
+            print("Сумка полная ("..eventCurrency.Value.."). Персонаж ресетнут!")
+            wait(3)
+        end
+    end
+    wait(0.5) -- Проверка каждые полсекунды
+end
